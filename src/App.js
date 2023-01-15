@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import AgridTable from './Components/AgridTable'
+import ButtonExampleEmphasis from './Components/Buttons/buttons';
+import Footer from './Components/Footer.js'
+import MainForm from './Components/Forms/MainForm';
+import FormExampleFieldControlId from './Components/Forms/MainForm';
+import MenuExampleSecondary from './Components/NavBar/Menu';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <MenuExampleSecondary/>
+    <MainForm />  
+    <AgridTable />
+    <Footer/>
+    <ButtonExampleEmphasis/>
+    </>
   );
 }
+
 
 export default App;
