@@ -14,7 +14,7 @@ function App() {
     <MainForm />  
     <AgridTable />
     <Footer/>
-    <ButtonExampleEmphasis/>
+    
     </>
   );
 }

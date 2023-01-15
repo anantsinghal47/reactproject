@@ -15,6 +15,7 @@ const genderOptions = [
 function MainForm (){
 
 
+
     //react states 
    const [errorMessages , setErrorMessages] = useState({});
    const [isSubmitted , setIsSubmitted] = useState(false);
@@ -27,8 +28,12 @@ function MainForm (){
 
   const handleSubmit = (event) => {
     // Prevent page reload
+    console.log(document.forms[0]);
+    var {firstName , lastName , gender , email} = document.forms[0];
+    console.log(firstName);
     console.log("Form submitted");
     event.preventDefault();
+    alert("Thank for you submitting")
   };
 
 
@@ -47,17 +52,7 @@ function MainForm (){
         id='form-input-control-first-name'
         control={Input}
         label='First name'
-        placeholder='First name'
-
-        // error = {
-        //     {
-        //         pointing : "above",
-        //         content : "Can not be Empty",
-
-            
-
-        //     }
-        // }        
+        placeholder='First name'        
         required={true}
         type='name'
       />
