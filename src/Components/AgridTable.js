@@ -39,26 +39,32 @@ export default function AgridTable() {
   
 
   return (
-    <div className='ag-theme-alpine' style={{width :500 , height:500 , marginTop:60 , marginLeft:100 , colum}}>
+    <div className='ag-theme-alpine' style={{ marginTop:60 , marginLeft: 20 }}>
         
-        
+
      <Button onClick={() => {setRowData(0)}} id="ResetButton" color='red' content="reset Data" ></Button>   
      <Button onClick={() => {setRowData(updateData)}}  id ="loadButton" color='facebook' content="Load Data" ></Button>   
      <Button onClick={() => {setRowData(updateData)}}  id ="loadButton" color='yellow' content="Load Data"></Button>   
      <Button onClick={() => {setRowData(updateData)}}  id ="loadButton" color='orange' content="Load Data"></Button>   
+     
 
+     <div style={{  display:'flex' , justifyContent:'space-evenly'}}>
 
+      <div style={{marginRight:60 , flex:'50%' , height:300}}>
+      <AgGridReact 
+      rowData={rowData}
+      columnDefs={columnDefs}>
+      </AgGridReact>
+
+    </div>
+    <div  style={{  flex:'50%' , marginRight:20}}>
       <AgGridReact
       rowData={rowData}
       columnDefs={columnDefs}>
 
       </AgGridReact>
-
-      <AgGridReact
-      rowData={rowData}
-      columnDefs={columnDefs}>
-
-      </AgGridReact>
+      </div>
+      </div>
       
     </div>
   )

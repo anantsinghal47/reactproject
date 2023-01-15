@@ -6,11 +6,13 @@ import Footer from './Components/Footer.js'
 import MainForm from './Components/Forms/MainForm';
 import FormExampleFieldControlId from './Components/Forms/MainForm';
 import MenuExampleSecondary from './Components/NavBar/Menu';
+import TabExampleColoredInverted from './Components/tabbar';
 
 function App() {
   return (
     <>
-    <MenuExampleSecondary/>
+    <TabExampleColoredInverted/>
+    {/* <MenuExampleSecondary/> */}
     <MainForm />  
     <AgridTable />
     <Footer/>
