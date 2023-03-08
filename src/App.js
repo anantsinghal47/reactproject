@@ -10,13 +10,26 @@ import TabExampleColoredInverted from './Components/tabbar';
 import Header from './Header.js';
 import FooterBottom from './FooterBottom.js';
 import Carousel , {CarouselItem} from './Carousel';
+import ReleaseBar from './Components/Release/ReleaseBar';
 
 function App() {
   return (
     <>
-    {/* <Header/> */}
-    {/* <TabExampleColoredInverted/> */}
-    {/* <MenuExampleSecondary/> */}
+  
+
+        <ReleaseBar/>
+    </>
+  );
+}
+
+
+export default App;
+
+
+/*
+  {/* <Header/> }
+    {/* <TabExampleColoredInverted/> }
+    {/* <MenuExampleSecondary/> }
     <Header/>
     <Carousel>
       <CarouselItem>Item1</CarouselItem>
@@ -26,9 +39,4 @@ function App() {
     <MainForm />  
     <AgridTable />
     <FooterBottom/>
-    </>
-  );
-}
-
-
-export default App;
+  */
