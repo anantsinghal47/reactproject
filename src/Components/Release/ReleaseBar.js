@@ -1,37 +1,36 @@
-import React from "react";
-import {
-  Breadcrumbs as MUIBreadcrumbs,
-  Link,
-  Typography
-} from "@material-ui/core";
-import { withRouter } from "react-router-dom";
+import React from 'react'
+import { useLocation, Link as RouterLink } from 'react-router-dom'
+import { Breadcrumbs, Typography, Link } from '@material-ui/core'
 
-const Breadcrumbs = props => {
-  const {
-    history,
-    location: { pathname }
-  } = props;
-  const pathnames = pathname.split("/").filter(x => x);
+function toTitleCase(str) {
+  return str.replace(/\b\w+/g, function (s) {
+    return s.charAt(0).toUpperCase() + s.substr(1).toLowerCase()
+  })
+}
+
+export default function () {
+  let location = useLocation()
+  const pathnames = location.pathname.split('/').filter((x) => x)
+
   return (
-    <MUIBreadcrumbs aria-label="breadcrumb">
-      {pathnames.length > 0 ? (
-        <Link onClick={() => history.push("/")}>Home</Link>
-      ) : (
-        <Typography> Home </Typography>
-      )}
-      {pathnames.map((name, index) => {
-        const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
-        const isLast = index === pathnames.length - 1;
-        return isLast ? (
-          <Typography key={name}>{name}</Typography>
-        ) : (
-          <Link key={name} onClick={() => history.push(routeTo)}>
-            {name}
-          </Link>
-        );
-      })}
-    </MUIBreadcrumbs>
-  );
-};
+    <Breadcrumbs aria-label='Breadcrumb'>
+      <Link color='inherit' component={RouterLink} to='/'>
+        Home
+      </Link>
+      {pathnames.map((value, index) => {
+        const last = index === pathnames.length - 1
+        const to = `/${pathnames.slice(0, index + 1).join('/')}`
 
-export default withRouter(Breadcrumbs);
+        return last ? (
+          <Typography color='textPrimary' key={to}>
+            {toTitleCase(value)}
+          </Typography>
+        ) : (
+          <Link color='inherit' component={RouterLink} to='/' key={to}>
+            {toTitleCase(value)}
+          </Link>
+        )
+      })}
+    </Breadcrumbs>
+  )
+}
