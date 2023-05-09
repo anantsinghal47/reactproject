@@ -1,0 +1,2 @@
+      api.setRowStyle(params.node.id, { backgroundColor: "lightgrey" });
+      api.setRowNode(params.node.id, { selectable: false });
