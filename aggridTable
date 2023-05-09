@@ -1,0 +1,89 @@
+// Column definitions
+const columnDefs = [
+  {
+    headerName: "Actions",
+    cellRenderer: "actionsRenderer",
+  },
+  {
+    headerName: "Name",
+    field: "name",
+  },
+  {
+    headerName: "Age",
+    field: "age",
+  },
+];
+
+// Cell renderer for edit and delete buttons
+function ActionsRenderer(props) {
+  const { api, data } = props;
+
+  // State to track whether the row is being edited or not
+  const [isEditing, setIsEditing] = useState(false);
+
+  // Event listener for the edit button
+  const onEdit = () => {
+    setIsEditing(true);
+  };
+
+  // Event listener for the delete button
+  const onDelete = () => {
+    // Remove the row data from the grid
+    api.applyTransaction({ remove: [data] });
+  };
+
+  // Event listener for the save button
+  const onSave = () => {
+    setIsEditing(false);
+  };
+
+  // Event listener for the cancel button
+  const onCancel = () => {
+    setIsEditing(false);
+  };
+
+  // Render the appropriate button based on whether the row is being edited or not
+  if (isEditing) {
+    return (
+      <div>
+        <button onClick={onSave}>Save</button>
+        <button onClick={onCancel}>Cancel</button>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <button onClick={onEdit}>Edit</button>
+        <button onClick={onDelete}>Delete</button>
+      </div>
+    );
+  }
+}
+
+// Grid options
+const gridOptions = {
+  // Register the custom cell renderer
+  components: {
+    actionsRenderer: ActionsRenderer,
+  },
+  // Other options...
+};
+
+// Grid component
+function GridComponent(props) {
+  const [rowData, setRowData] = useState([]);
+
+  useEffect(() => {
+    // Load row data...
+  }, []);
+
+  return (
+    <div className="ag-theme-alpine" style={{ height: 400 }}>
+      <AgGridReact
+        columnDefs={columnDefs}
+        rowData={rowData}
+        gridOptions={gridOptions}
+      />
+    </div>
+  );
+}
