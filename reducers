@@ -1,0 +1,73 @@
+const reportSlice = createSlice({
+  name: 'report',
+  initialState,
+  reducers: {
+    updateReportData: (state, action) => {
+      const { portfolioId, reportId, newReportData } = action.payload;
+
+      // Create a new copy of the state object with the updated report data
+      const newState = {
+        ...state,
+        portfoliosReportData: {
+          ...state.portfoliosReportData,
+          [portfolioId]: {
+            ...state.portfoliosReportData[portfolioId],
+            [reportId]: {
+              ...state.portfoliosReportData[portfolioId][reportId],
+              ...newReportData,
+            },
+          },
+        },
+      };
+
+      return newState;
+    },
+  },
+});
+
+dispatch(
+  updateReportData({
+    portfolioId: 'portfolio1',
+    reportId: '1',
+    newReportData: {
+      summaryData: { /* updated summary data */ },
+      isDirty: true,
+      detailData: { /* updated detail data */ },
+    },
+  })
+);
+
+//axios wala
+import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
+
+const reportSlice = createSlice({
+  name: 'report',
+  initialState,
+  reducers: {
+    updateReportData: async (state, action) => {
+      const { portfolioId, reportId } = state.selectedReport;
+
+      // Fetch the new report data from the server
+      const response = await axios.get('/reportData.json');
+      const newReportData = response.data;
+
+      // Update the report data in the Redux store with the new data
+      state.portfoliosReportData[portfolioId][reportId] = {
+        ...state.portfoliosReportData[portfolioId][reportId],
+        ...newReportData,
+      };
+    },
+    setSelectedReport: (state, action) => {
+      state.selectedReport = action.payload;
+    },
+  },
+});
+
+export const { updateReportData, setSelectedReport } = reportSlice.actions;
+export default reportSlice.reducer;
+
+
+dispatch(setSelectedReport({ portfolioId: 'portfolio1', reportId: '1' }));
+dispatch(updateReportData());
+
