@@ -19,6 +19,16 @@ function App() {
         main: '#007bff',
       },
     },
+    overrides: {
+      MuiPickersDay: {
+        daySelected: {
+          backgroundColor: 'white',
+          '&:hover': {
+            backgroundColor: 'white',
+          },
+        },
+      },
+    },
   });
 
   return (
